@@ -53,16 +53,16 @@ public class Main {
                 System.out.print("You ordered: ");
                 switch (order) {
                     case 1:
-                        System.out.print(menuItems.get(0).getName());
+                        System.out.print(menuItems.get(0).getName()+ " W " + menuItems.get(0).getPrice());
                         break;
                     case 2:
-                        System.out.print(menuItems.get(1).getName());
+                        System.out.print(menuItems.get(1).getName()+ " W " + menuItems.get(1).getPrice());
                         break;
                     case 3:
-                        System.out.println(menuItems.get(2).getName());
+                        System.out.println(menuItems.get(2).getName()+ " W " + menuItems.get(2).getPrice());
                         break;
                     case 4:
-                        System.out.println(menuItems.get(3).getName());
+                        System.out.println(menuItems.get(3).getName()+ " W " + menuItems.get(3).getPrice());
                         break;
                     case 0:
                         System.out.println("nothing");

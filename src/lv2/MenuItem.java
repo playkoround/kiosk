@@ -1,17 +1,10 @@
 package lv2;
 
-import java.awt.*;
-import java.util.ArrayList;
-
 public class MenuItem {
         // 속성(=필드=상태)
         private String name;
         private int price;
         private String description;
-
-        // 기본 생성자
-        public MenuItem() {
-        }
 
         // 생성자
         public MenuItem(String name, int price, String description) {
