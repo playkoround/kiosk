@@ -1,4 +1,4 @@
-package Lv3;
+package lv4;
 
 public class MenuItem {
         // 속성(=필드=상태)
