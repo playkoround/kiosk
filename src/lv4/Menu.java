@@ -1,19 +1,19 @@
 package lv4;
 
-import lv3.MenuItem;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
-    private List<lv3.MenuItem> menuItems = new ArrayList<>();
+    // 속성 | list 안에 있는 index마다의 이름, 가격, 설명  > menuItem의 게터를 키오스크에 가져와서 정제
+    String 카테고리 = "이름";
+    private List<MenuItem> menuItems = new ArrayList<>();
 
 
     // MenuItem 인스턴스화
-    lv3.MenuItem syBurger = new lv3.MenuItem("Sy Burger", 7900, "100% Angus Beef flame-grilled topped with fresh Rocket");
-    lv3.MenuItem smokedBurger = new lv3.MenuItem("Smoked Burger", 8900, "Flamed-grilled beef patty topped with smoked bacon");
-    lv3.MenuItem cheeseBurger = new lv3.MenuItem("Cheese Burger", 6900, "Flamed-grilled beef patty topped with melted cheese and tomato");
-    lv3.MenuItem hamburger = new MenuItem("Hamburger", 6900, "Two flamed-grilled beef patties with lettuce");
+    MenuItem syBurger = new MenuItem("Sy Burger", 7900, "100% Angus Beef flame-grilled topped with fresh Rocket");
+    MenuItem smokedBurger = new MenuItem("Smoked Burger", 8900, "Flamed-grilled beef patty topped with smoked bacon");
+    MenuItem cheeseBurger = new MenuItem("Cheese Burger", 6900, "Flamed-grilled beef patty topped with melted cheese and tomato");
+    MenuItem hamburger = new MenuItem("Hamburger", 6900, "Two flamed-grilled beef patties with lettuce");
 
     public void menu() {
         //     MenuItem을 담을 menuItems에 리스트 인터페이스 구현한 ArrayList 인스턴스화하여 할당

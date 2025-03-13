@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Kiosk {
+        Menu menu = new Menu();
+
         // start 메서드
         // 메서드 5요소 접근제어자 반환타입 메서드이름 (매개변수) {바디}
         public void start(){
@@ -17,8 +19,8 @@ public class Kiosk {
             // 환영 인사 및 메뉴 안내
             System.out.println("Welcome to Sy Burger! There is our menu below: ");
             // for 반복문으로 메뉴 출력
-            for(int i = 0; i < menuItems.size(); i++) {
-                System.out.println((i + 1) + ". " + menuItems.get(i).getName() + " W " + menuItems.get(i).getPrice() + "\n" + menuItems.get(i).getDescription() + "\n");
+            for(int i = 0; i < menu.menuItems.size(); i++) {
+                System.out.println((i + 1) + ". " + menu.get(i).getName() + " W " + menuItems.get(i).getPrice() + "\n" + menuItems.get(i).getDescription() + "\n");
             }
             System.out.println("0. Exit");
 
