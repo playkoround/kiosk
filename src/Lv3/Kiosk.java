@@ -15,17 +15,17 @@ public class Kiosk {
     MenuItem cheeseBurger = new MenuItem("Cheese Burger", 6900, "Flamed-grilled beef patty topped with melted cheese and tomato");
     MenuItem hamburger = new MenuItem("Hamburger", 6900, "Two flamed-grilled beef patties with lettuce");
 
-    // MenuItem을 담을 menuItems에 리스트 인터페이스 구현한 ArrayList 인스턴스화하여 할당
-    // 메서드 안에 있어야 활용이 가능하다
-//        menuItems.add(syBurger);
-//        menuItems.add(smokedBurger);
-//        menuItems.add(cheeseBurger);
-//        menuItems.add(hamburger);
 
-
-        // start 함수? 메서드
-    // 메서드 5요소 접근제어자 반환타입 메서드이름 (매개변수) {바디}
+        // start 메서드
+        // 메서드 5요소 접근제어자 반환타입 메서드이름 (매개변수) {바디}
         public void start(){
+            //     MenuItem을 담을 menuItems에 리스트 인터페이스 구현한 ArrayList 인스턴스화하여 할당
+            //     메서드 안에 있어야 활용이 가능하니, start 메서드에 우선 넣어주었다.
+            menuItems.add(syBurger);
+            menuItems.add(smokedBurger);
+            menuItems.add(cheeseBurger);
+            menuItems.add(hamburger);
+
             // 스캐너 변수를 선언해서, 스캐너 객체를 만들어 할당
             Scanner scanner = new Scanner(System.in);
 
