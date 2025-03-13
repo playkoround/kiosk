@@ -1,26 +1,23 @@
 package lv2;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        // MenuItem 호출 생성 ??  menuItem > 인스턴스 인스턴스화한다
+        // MenuItem 인스턴스화
         MenuItem syBurger = new MenuItem("Sy Burger", 7900, "100% Angus Beef flame-grilled topped with fresh Rocket");
         MenuItem smokedBurger = new MenuItem("Smoked Burger", 8900, "Flamed-grilled beef patty topped with smoked bacon");
         MenuItem cheeseBurger = new MenuItem("Cheese Burger", 6900, "Flamed-grilled beef patty topped with melted cheese and tomato");
         MenuItem hamburger = new MenuItem("Hamburger", 6900, "Two flamed-grilled beef patties with lettuce");
 
-        // List 활용위해 호출 생성 ?? //리스트 인터페이스 , arraylist가 list의 구현체임
+        // MenuItem을 담을 menuItems에 리스트 인터페이스 구현한 ArrayList 인스턴스화하여 할당
         List<MenuItem>menuItems = new ArrayList<>();
         menuItems.add(syBurger);
         menuItems.add(smokedBurger);
         menuItems.add(cheeseBurger);
         menuItems.add(hamburger);
 
-        // 스캐너 선언
+        // 스캐너 변수를 선언해서, 스캐너 객체를 만들어 할당
         Scanner scanner = new Scanner(System.in);
 
         // 환영 인사 및 메뉴 안내
@@ -31,7 +28,7 @@ public class Main {
         }
         System.out.println("0. Exit");
 
-
+        // 유효한 입력값 체크하는 불리안
         boolean isValidInt = false;
         while (!isValidInt) {
             // 유효한 입력값이 안들어오는 예외 처리
@@ -50,6 +47,7 @@ public class Main {
                     continue; //continue로 밑에 스위치까지 안 읽고, 바로 입력값 받게 만들기
                 }
 
+                // 주문 내역 안내
                 System.out.print("You ordered: ");
                 switch (order) {
                     case 1:
