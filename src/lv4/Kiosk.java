@@ -25,38 +25,42 @@ public class Kiosk {
                 System.out.println(i + ". " + category);
                 i++;
             }
+            System.out.println("0. Exit");
         }
-        // 카테고리별 메뉴들을 보여주는 메서드
-        public <T> T getUserSelection(String prompt, List<T> options) throws Exception {
-            boolean isValid = false;
-            int choice = -1; // 유효값이 아니라는 것을 뜻하기 위해 -1로 초기화
 
-            while (!isValid) {
+
+
+        // 카테고리별 메뉴들을 보여주는 메서드 Fixed
+        public <T> T getUserSelection(String prompt, List<T> options) {
+
+            while (true) {
                 try {
                     // 사용자에게 안내 메세지 출력
-                    System.out.println(prompt);
-                    for (int i = 0; i < options.size(); i++) {
-                        System.out.println((i + 1) + ". " + options.get(i).toString()); // 메모리 주소 toString 테스트
-                    }
+                    System.out.println("\n" + prompt);
 
                     // 입력값 받기
-                    System.out.print("\nPlease enter the number: ");
-                    choice = scanner.nextInt() - 1;
+                    int choice = scanner.nextInt();
+                    scanner.nextLine(); // 개행 문자 처리
+
+                    if (choice == 0) {
+                        return null; // 0 입력 시 뒤로 가기 or 종료
+                    }
 
                     // 입력값 검증
                     if (choice >= 0 && choice <= options.size()) {
-                        isValid = true; // 올바른 입력이면 반복 종료
+                        return options.get(choice - 1); // 1부터 시작하는 인덱스로 변환
                     } else {
                         System.out.println("Please enter a valid number.");
                     }
+
                 } catch (Exception e) {
                     System.out.println("Please enter a number.");
                     scanner.nextLine(); // 버퍼 비우기
 
                 }
+//                throw new Exception();
                 // return options.get(choice); // return이 여기 위치하면, while문을 안탈경우 return이 없는 메서드라고 생각해서 오류가 남
             }
-            return options.get(choice);
         }
 
 
@@ -68,41 +72,28 @@ public class Kiosk {
             // 환영 인사
             System.out.println("Welcome to Sy Burger! \n");
 
-            // 카테고리 보여주기
-            viewMenuCategories();
+            // 0 선택시 종료 및 이전으로 돌아가기 설정
+            while (true) {
+                // 카테고리 보여주기
+                viewMenuCategories();
 
-            // 카테고리 선택 및 그에 따른 안내
-            boolean isValidCategoryInt = false;
-            while (!isValidCategoryInt) {
-                // 유효한 입력값이 안들어오는 예외 처리
-                try {
-                    // 입력값 받기
-                    System.out.println("\nPlease select the category's number: ");
-                    int chosenCategory = scanner.nextInt();
+                // 카테고리 선택 및 그에 따른 안내
+                Menu chosenMenu = getUserSelection("Please select a category: ", menus);
 
-                    // 입력값이 1부터 카테고리 종류수까지인지 확인
-                    if (chosenCategory >= 1 && chosenCategory <= menus.size()) {
-                        // 올바른 숫자이면 반복 종료
-                        isValidCategoryInt = true;
-                    } else {
-                        System.out.println("Please enter a valid number");
-                        continue; //continue로 밑에 스위치까지 안 읽고, 바로 입력값 받게 만들기
-                    }
-                    // 카테고리 선택에 따른 메뉴 안내
-                    System.out.print("There are our menus below: \n");
-                    int i = 1;
-                    Menu menu = menus.get(chosenCategory - 1); // 선택한 카테고리(Menu) 가져오기
-                    List<MenuItem> menuItems = menu.getMenuItems();
-                    for (MenuItem item : menuItems) {
-                        System.out.println(i + ". " + item.getName() + " - W " + item.getPrice());
-                        System.out.println(item.getDescription() + "\n");
-                        i++;
-                    }
+                if (chosenMenu == null) {
+                    System.out.println("Exiting program...");
+                    break; // 0 입력 시 프로그램 종료
                 }
-                catch (InputMismatchException e) {
-                    // 입력값이 숫자가 아닌 예외 처리
-                    System.out.println("Please enter a number");
-                    scanner.nextLine(); // 개행문자 > 버퍼에는 계속 입력값이 남아있음 > 그래서 nextLine이 엔터(컴퓨터 = \n)를 통해 없앤다.
+
+                while (true) {
+                    // 메뉴 선택 및 그에 따른 안내
+                    MenuItem chosenItem = getUserSelection("Please select a menu item:", chosenMenu.getMenuItems());
+                    if (chosenItem == null) {
+                        System.out.println("Returning to category selection...");
+                        break; // 0 입력 시 카테고리 선택으로 돌아감
+                    }
+                    System.out.println("You ordered: " + chosenItem.getName() + " - W " + chosenItem.getPrice());
+
                 }
             }
 
