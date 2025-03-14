@@ -1,6 +1,4 @@
 package lv4;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
@@ -23,5 +21,5 @@ public class Menu {
         menuItems.add(cheeseBurger);
         menuItems.add(hamburger);
     }
-
 }
+
