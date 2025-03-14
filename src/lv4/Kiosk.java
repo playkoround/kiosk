@@ -1,14 +1,65 @@
 package lv4;
 
-import lv3.MenuItem;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Kiosk {
-        Menu menu = new Menu();
+
+    // 스캐너 변수를 선언해서, 스캐너 객체를 만들어 할당
+    Scanner scanner = new Scanner(System.in);
+
+        //속성
+        private List<Menu> menus;
+        public Kiosk(List<Menu> menus) {
+            this.menus = menus;
+        }
+
+        // 메뉴 카테고리 보여주는 메서드
+        public void viewMenuCategories() {
+            System.out.println("category: ");
+            int i = 1;
+            for (Menu menu : menus) {
+                String category = menu.getCategory();
+                System.out.println(i + ". " + category);
+                i++;
+            }
+        }
+        // 카테고리별 메뉴들을 보여주는 메서드
+        public <T> T getUserSelection(String prompt, List<T> options) throws Exception {
+            boolean isValid = false;
+            int choice = -1; // 유효값이 아니라는 것을 뜻하기 위해 -1로 초기화
+
+            while (!isValid) {
+                try {
+                    // 사용자에게 안내 메세지 출력
+                    System.out.println(prompt);
+                    for (int i = 0; i < options.size(); i++) {
+                        System.out.println((i + 1) + ". " + options.get(i).toString()); // 메모리 주소 toString 테스트
+                    }
+
+                    // 입력값 받기
+                    System.out.print("\nPlease enter the number: ");
+                    choice = scanner.nextInt() - 1;
+
+                    // 입력값 검증
+                    if (choice >= 0 && choice <= options.size()) {
+                        isValid = true; // 올바른 입력이면 반복 종료
+                    } else {
+                        System.out.println("Please enter a valid number.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Please enter a number.");
+                    scanner.nextLine(); // 버퍼 비우기
+
+                }
+                // return options.get(choice); // return이 여기 위치하면, while문을 안탈경우 return이 없는 메서드라고 생각해서 오류가 남
+            }
+            return options.get(choice);
+        }
+
+
 
         // start 메서드
         // 메서드 5요소 접근제어자 반환타입 메서드이름 (매개변수) {바디}
