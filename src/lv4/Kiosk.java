@@ -16,9 +16,9 @@ public class Kiosk {
             this.menus = menus;
         }
 
-        // 메뉴 카테고리 보여주는 메서드
+        // 카테고리 보여주는 메서드
         public void viewMenuCategories() {
-            System.out.println("category: ");
+            System.out.println("categories: ");
             int i = 1;
             for (Menu menu : menus) {
                 String category = menu.getCategory();
@@ -28,6 +28,19 @@ public class Kiosk {
             System.out.println("0. Exit");
         }
 
+        // 메뉴 보여주는 메서드
+        public void viewMenus(Menu chosenMenu) {
+            System.out.println("menus in " + chosenMenu.getCategory() + ": ");
+
+            // MenuItem들을 모아둔 리스트 만들기
+            List<MenuItem> items = chosenMenu.getMenuItems();
+            for (int i = 0; i < items.size(); i++) {
+                MenuItem item = items.get(i);
+                System.out.println((i + 1) + ". " + item.getName() + " - W " + item.getPrice());
+                System.out.println(item.getDescription() + "\n");
+            }
+            System.out.println("0. Go back to Categories");
+        }
 
 
         // 카테고리별 메뉴들을 보여주는 메서드 Fixed
@@ -36,7 +49,7 @@ public class Kiosk {
             while (true) {
                 try {
                     // 사용자에게 안내 메세지 출력
-                    System.out.println("\n" + prompt);
+                    System.out.println(prompt);
 
                     // 입력값 받기
                     int choice = scanner.nextInt();
@@ -76,7 +89,6 @@ public class Kiosk {
             while (true) {
                 // 카테고리 보여주기
                 viewMenuCategories();
-
                 // 카테고리 선택 및 그에 따른 안내
                 Menu chosenMenu = getUserSelection("Please select a category: ", menus);
 
@@ -86,14 +98,19 @@ public class Kiosk {
                 }
 
                 while (true) {
+                    // 메뉴 보여주기
+                    // menu int x
+                    viewMenus(chosenMenu);
+
                     // 메뉴 선택 및 그에 따른 안내
                     MenuItem chosenItem = getUserSelection("Please select a menu item:", chosenMenu.getMenuItems());
                     if (chosenItem == null) {
                         System.out.println("Returning to category selection...");
                         break; // 0 입력 시 카테고리 선택으로 돌아감
                     }
-                    System.out.println("You ordered: " + chosenItem.getName() + " - W " + chosenItem.getPrice());
-
+                    System.out.println("\nYou ordered: " + chosenItem.getName() + " - W " + chosenItem.getPrice());
+                    // 종료 안내 문구
+                    System.out.println("\nIf you want to finish your order, please type 0");
                 }
             }
 

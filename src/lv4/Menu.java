@@ -17,6 +17,7 @@ public class Menu {
         return this.category;
     }
 
+    // items 모음집
     public List<MenuItem> getMenuItems() {
         return this.menuItems;
     }
